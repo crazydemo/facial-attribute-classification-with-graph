@@ -15,7 +15,10 @@ You can download the caffe model here:
 
 https://github.com/cvjena/cnn-models
 
-We also provide the converted tensorflow model in our project, along with the converted resnet50 mdoel trained on VggFace2.
+We also provide the converted tensorflow model in the following link, along with the converted resnet50 mdoel trained on VggFace2.
+
+链接：https://pan.baidu.com/s/1KBSN0ZGuGAtXRRyP7fq_7Q 
+提取码：xhzu
 
 3.Data Augmentation
 
