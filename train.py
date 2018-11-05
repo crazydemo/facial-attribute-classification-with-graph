@@ -139,7 +139,7 @@ with tf.control_dependencies(update_ops):
     train_backbone = tf.train.MomentumOptimizer(learning_rate, 0.9).minimize(loss_fln, var_list=var_backbone, global_step=global_step)
     train_cln = tf.train.MomentumOptimizer(learning_rate*10, 0.9).minimize(loss_cln, var_list=var_cln, global_step=global_step)
     train_fln = tf.train.MomentumOptimizer(learning_rate*10, 0.9).minimize(loss_fln, var_list=var_fln, global_step=global_step)
-train_op = tf.group([train_backbone, train_cln, train_fln])
+train_op = tf.group(train_backbone, train_cln, train_fln)
 
 sess.run(tf.global_variables_initializer())
 
