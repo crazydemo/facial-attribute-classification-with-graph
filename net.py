@@ -83,7 +83,7 @@ def convLayer(x, kHeight, kWidth, strideX, strideY,
         return out
 
 
-def mynet(x, train_phase):
+def net(x, train_phase):
     y_predict_cln = [0]*40
     y_predict_fln = [0]*40
     
