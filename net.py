@@ -155,7 +155,7 @@ def net(x, train_phase):
 ######################      40 tasks     ########################################################
             psetemp = conv(ele_mul, 1, 1, 1, 1, 10, "cln_conv", "SAME")
             pseout = tf.concat([pseout, psetemp], 3)
-             b, h, w, c = psetemp.get_shape().as_list()
+            b, h, w, c = psetemp.get_shape().as_list()
             affinity_matrix = tf.concat([affinity_matrix, tf.reshape(psetemp, [b, h*w*c, 1])], 2)
             
     affinity_matrix_ = tf.matmul(tf.transpose(affinity_matrix, [0, 2, 1]), affinity_matrix)
