@@ -124,20 +124,20 @@ summary_writer_test = tf.summary.FileWriter(tensorboard_path+'/test')
 '''training method'''
 var = tf.trainable_variables()
 var_cln = []
-var_pfln = []
+var_fln = []
 var_backbone = []
 for v in var:
     if "block" not in v.name and "cln" not in v.name:
         var_backbone.append(v)
     elif "block" in v.name and "cln" not in v.name:
-        var_pfln.append(v)
+        var_fln.append(v)
     elif "cln" in v.name:
         var_cln.append(v)
 
 update_ops = tf.get_collection(tf.GraphKeys.UPDATE_OPS)
 with tf.control_dependencies(update_ops):
     train_backbone = tf.train.MomentumOptimizer(learning_rate, 0.9).minimize(loss_fln, var_list=var_backbone, global_step=global_step)
-    train_cln = tf.train.MomentumOptimizer(learning_rate*10, 0.9).minimize(loss_tcln, var_list=var_cln, global_step=global_step)
+    train_cln = tf.train.MomentumOptimizer(learning_rate*10, 0.9).minimize(loss_cln, var_list=var_cln, global_step=global_step)
     train_fln = tf.train.MomentumOptimizer(learning_rate*10, 0.9).minimize(loss_fln, var_list=var_fln, global_step=global_step)
 train_op = tf.group([train_backbone, train_cln, train_fln])
 
