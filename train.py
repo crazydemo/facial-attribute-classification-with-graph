@@ -90,14 +90,14 @@ with tf.name_scope("cross_ent"):
         cross_entropy_cln[i] = tf.reduce_mean(tf.nn.sparse_softmax_cross_entropy_with_logits(labels=y[:,i],logits=logits_cln[i]))
         cross_entropy_flc[i] = tf.reduce_mean(tf.nn.sparse_softmax_cross_entropy_with_logits(labels=y[:,i],logits=logits_fln[i]))
 cross_ent_cln_40 = tf.reduce_sum(cross_entropy_cln)
-cross_ent_flc_40 = tf.reduce_sum(cross_entropy_flc)
+cross_ent_fln_40 = tf.reduce_sum(cross_entropy_flc)
 
 regularization_losses = tf.get_collection(tf.GraphKeys.REGULARIZATION_LOSSES)
 reg_variables = tf.get_collection(tf.GraphKeys.REGULARIZATION_LOSSES)
 reg_term = tf.contrib.layers.apply_regularization(regularizer, reg_variables)
 reg_term_summary = tf.summary.scalar('reg_term', reg_term)
 loss_cln = cross_ent_cln_40+reg_term
-loss_fln = cross_ent_flc_40+reg_term
+loss_fln = cross_ent_fln_40+reg_term
 loss_cln_summary = tf.summary.scalar('loss_cln', loss_cln)
 loss_fln_summary = tf.summary.scalar('loss_fln', loss_fln)
 
@@ -183,7 +183,7 @@ for i in range(total_step):
         summary_writer_train.add_summary(merged_train_summary_str,step)
     if step%100 == 0:
         x_,y_= sess.run([img_batch_val,label_batch_val])
-        vali_op = [accuracy40_cln, accuracy40_fln, cross_ent_cln_40, cross_ent_fln_40, loss_cln, loss_fln, merged_tvali_summary]
+        vali_op = [accuracy40_cln, accuracy40_fln, cross_ent_cln_40, cross_ent_fln_40, loss_cln, loss_fln, merged_vali_summary]
         at_v, af_v, cet_v, cef_v, lt_v, lf_v, merged_vali_summary_str = sess.run(vali_op,feed_dict={x_image:x_, y: y_,phase_train:False})
         summary_writer_test.add_summary(merged_vali_summary_str,step)
         print("validating...")
