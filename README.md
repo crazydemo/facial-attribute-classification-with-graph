@@ -23,3 +23,7 @@ We also provide the converted tensorflow model in the following link, along with
 3.Data Augmentation
 
 As the LFWA dataset is too small, we add some distortion to the training set. The distortion tool is from https://github.com/mdbloice/Augmentor
+
+
+
+The paper has been uploaded on https://arxiv.org/abs/1810.09162.
